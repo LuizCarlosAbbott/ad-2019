@@ -6,6 +6,4 @@ export class PersonInput {
   readonly name: string;
   @Field()
   readonly email: string;
-  @Field()
-  readonly friend: string;
 }

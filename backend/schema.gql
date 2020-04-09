@@ -6,7 +6,7 @@ type CreatePersonDto {
   id: ID!
   name: String!
   email: String!
-  friend: String!
+  friend: String
 }
 
 type Mutation {
@@ -16,7 +16,6 @@ type Mutation {
 input PersonInput {
   name: String!
   email: String!
-  friend: String!
 }
 
 type Query {

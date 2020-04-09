@@ -5,9 +5,9 @@ export class CreatePersonDto {
   @Field(() => ID)
   id: string;
   @Field()
-  readonly name: string;
+  name: string;
   @Field()
-  readonly email: string;
-  @Field()
-  readonly friend: string;
+  email: string;
+  @Field({ nullable: true })
+  friend: string;
 }
