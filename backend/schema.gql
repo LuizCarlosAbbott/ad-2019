@@ -2,6 +2,23 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CreatePersonDto {
+  id: ID!
+  name: String!
+  email: String!
+  friend: String!
+}
+
+type Mutation {
+  createPerson(input: PersonInput!): CreatePersonDto!
+}
+
+input PersonInput {
+  name: String!
+  email: String!
+  friend: String!
+}
+
 type Query {
-  hello: String!
+  persons: [CreatePersonDto!]!
 }

@@ -8,10 +8,10 @@ import { PersonsModule } from './persons/persons.module';
 @Module({
   imports: [
     PersonsModule,
-    // MongooseModule.forRoot('mongodb://localhost/backend'),
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
     }),
+    MongooseModule.forRoot('mongodb://localhost/backend'),
   ],
   controllers: [AppController],
   providers: [AppService],
