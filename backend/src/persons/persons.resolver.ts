@@ -12,8 +12,22 @@ export class PersonsResolver {
     return this.personsService.findAll();
   }
 
+  @Query(() => CreatePersonDto, { nullable: true })
+  async person(@Args('id') id: string) {
+    const person = await this.personsService.findOne(id);
+    return person[0];
+  }
+
   @Mutation(() => CreatePersonDto)
   async createPerson(@Args('input') input: PersonInput) {
     return this.personsService.create(input);
+  }
+
+  @Mutation(() => CreatePersonDto)
+  async deletePerson(@Args('id') id: string) {
+    const person = await this.personsService.findOne(id);
+
+    await this.personsService.deletePerson(id);
+    return person[0];
   }
 }

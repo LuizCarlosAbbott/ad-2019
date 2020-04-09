@@ -10,6 +10,7 @@ type CreatePersonDto {
 
 type Mutation {
   createPerson(input: PersonInput!): CreatePersonDto!
+  deletePerson(id: String!): CreatePersonDto!
 }
 
 input PersonInput {
@@ -19,4 +20,5 @@ input PersonInput {
 
 type Query {
   persons: [CreatePersonDto!]!
+  person(id: String!): CreatePersonDto
 }
