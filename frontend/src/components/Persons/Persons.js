@@ -14,7 +14,7 @@ const DELETE_PERSON = gql`
 `;
 
 function Persons(props) {
-  const [deletePerson, { data }] = useMutation(DELETE_PERSON);
+  const [deletePerson] = useMutation(DELETE_PERSON);
 
   return props.data.persons.map(({ id, name, email }, index) => (
     <tr key={id} id={id}>
