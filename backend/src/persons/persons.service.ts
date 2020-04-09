@@ -25,6 +25,11 @@ export class PersonsService {
     return this.personModel.deleteOne({ _id: id }).exec();
   }
 
+  async deletePersons(): Promise<Boolean> {
+    const result = await this.personModel.deleteMany().exec();
+    return result.ok === 1;
+  }
+
   async update(id: string, person: PersonInput): Promise<Person> {
     return await this.personModel.findByIdAndUpdate(id, person, { new: true });
   }

@@ -37,4 +37,9 @@ export class PersonsResolver {
   ) {
     return this.personsService.update(id, input);
   }
+
+  @Mutation(() => Boolean)
+  async deletePersons() {
+    return await this.personsService.deletePersons();
+  }
 }

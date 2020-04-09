@@ -12,6 +12,7 @@ type Mutation {
   createPerson(input: PersonInput!): CreatePersonDto!
   deletePerson(id: String!): CreatePersonDto!
   updatePerson(input: PersonInput!, id: String!): CreatePersonDto!
+  deletePersons: Boolean!
 }
 
 input PersonInput {
