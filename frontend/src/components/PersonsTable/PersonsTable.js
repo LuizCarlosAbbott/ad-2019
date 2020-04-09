@@ -1,12 +1,13 @@
 import React from "react";
 import Persons from "../Persons/Persons";
+import "./PersonTable.css";
 
 const personsTable = (props) => {
   if (props.loading) return <p>Loading...</p>;
   if (props.error) return <p>Error :(</p>;
 
   return (
-    <table className="table mt-4">
+    <table className="PersonTable">
       <thead>
         <tr>
           <th>ID</th>
