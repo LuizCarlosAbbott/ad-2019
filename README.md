@@ -3,6 +3,7 @@
 - [ ] Preencher coluna amigo(FK) -- **amigo** => adicionado apos o sorteio / inicialmente vazio/inexistente
 - [ ] Fazer o CRUD no frontend em ReactJs (listar, cadastrar, editar, apagar pessoas).
 - [ ] Sortear os amigos (preencher a coluna amigos) e enviar e-mail para cada pessoa com o amigo sorteado.
+- [ ] Implementar testes no backend.
 - [ ] Dar deploy da aplicação no Heroku.
 - [ ] Escrever instruçes de como executar o programa.
 
