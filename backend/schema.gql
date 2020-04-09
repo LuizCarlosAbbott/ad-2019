@@ -6,7 +6,6 @@ type CreatePersonDto {
   id: ID!
   name: String!
   email: String!
-  friend: String
 }
 
 type Mutation {

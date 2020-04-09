@@ -8,6 +8,4 @@ export class CreatePersonDto {
   name: string;
   @Field()
   email: string;
-  @Field({ nullable: true })
-  friend: string;
 }
