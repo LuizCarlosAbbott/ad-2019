@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { PersonsService } from './persons.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { PersonInput } from './input-persons';
+import { Person } from './interfaces/person.interface';
 
 @Resolver('Persons')
 export class PersonsResolver {
@@ -14,8 +15,7 @@ export class PersonsResolver {
 
   @Query(() => CreatePersonDto, { nullable: true })
   async person(@Args('id') id: string) {
-    const person = await this.personsService.findOne(id);
-    return person[0];
+    return await this.personsService.findOne(id);
   }
 
   @Mutation(() => CreatePersonDto)
@@ -28,6 +28,14 @@ export class PersonsResolver {
     const person = await this.personsService.findOne(id);
 
     await this.personsService.deletePerson(id);
-    return person[0];
+    return person;
+  }
+
+  @Mutation(() => CreatePersonDto)
+  async updatePerson(
+    @Args('id') id: string,
+    @Args('input') input: PersonInput,
+  ) {
+    return this.personsService.update(id, input);
   }
 }
