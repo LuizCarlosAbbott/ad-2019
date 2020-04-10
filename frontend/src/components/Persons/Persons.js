@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaTrash, FaPencilAlt } from "react-icons/fa";
+import { FaTrash, FaPencilAlt, FaSave } from "react-icons/fa";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
@@ -59,12 +59,6 @@ function Persons(props) {
             className="btn btn-warning"
             onClick={() => {
               if (rIndex === index) {
-                updatePerson({
-                  variables: {
-                    id,
-                    input: { name: nameChange, email: emailChange },
-                  },
-                });
                 setIndex(-1);
               } else {
                 setIndex(index);
@@ -75,6 +69,22 @@ function Persons(props) {
           >
             <FaPencilAlt />
           </button>
+          {rIndex === index ? (
+            <button
+              className="btn btn-success ml-2"
+              onClick={() => {
+                updatePerson({
+                  variables: {
+                    id,
+                    input: { name: nameChange, email: emailChange },
+                  },
+                });
+                setIndex(-1);
+              }}
+            >
+              <FaSave />
+            </button>
+          ) : null}
           <button
             className="btn btn-danger ml-2"
             onClick={() => {
