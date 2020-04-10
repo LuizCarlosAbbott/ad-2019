@@ -1,27 +1,29 @@
 .PersonTable {
   color: black;
-  margin: 5em;
+  margin: 2em;
   width: calc(100vw - 10em);
 }
 
 .PersonTable th {
-  padding: 10px;
+  padding: 2px 5px;
   border: 2px solid rgba(0, 0, 0, 0.288);
 }
 
 .PersonTable td {
-  padding: 0.5em;
+  padding: 2px 5px;
   overflow: unset;
   border: 2px solid rgba(0, 0, 0, 0.288);
 }
 
-.PersonTable thead :nth-child(3) {
+.PersonTable thead :nth-child(4) {
   width: 160px;
 }
 
 .PersonTable td:nth-child(1) {
   min-width: 225px;
+  max-width: 260px;
 }
 .PersonTable td:nth-child(2) {
   min-width: 225px;
+  max-width: 260px;
 }

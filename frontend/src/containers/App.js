@@ -11,6 +11,7 @@ const PERSONS = gql`
       id
       name
       email
+      friend
     }
   }
 `;
@@ -21,6 +22,18 @@ const CREATE_PERSON = gql`
       id
       name
       email
+      friend
+    }
+  }
+`;
+
+const SORT_FRIEND = gql`
+  mutation sortFriend {
+    sortFriend {
+      id
+      name
+      email
+      friend
     }
   }
 `;
@@ -33,6 +46,15 @@ function App() {
       cache.writeQuery({
         query: PERSONS,
         data: { persons: persons.concat([createPerson]) },
+      });
+    },
+  });
+  const [sortFriend] = useMutation(SORT_FRIEND, {
+    update(cache, { data: { sortFriend } }) {
+      const { persons } = cache.readQuery({ query: PERSONS });
+      cache.writeQuery({
+        query: PERSONS,
+        data: { persons: persons.concat([sortFriend]).pop() },
       });
     },
   });
@@ -81,7 +103,7 @@ function App() {
                 createPerson({ variables: { input: { name, email } } })
               }
             >
-              Salvar
+              Adicionar a lista
             </button>
 
             <button
@@ -96,6 +118,9 @@ function App() {
           </div>
         </div>
       </div>
+      <button className="btn btn-success" onClick={() => sortFriend()}>
+        Sortear e enviar email
+      </button>
       <PersonsTable data={data} loading={loading} error={error} />
     </div>
   );

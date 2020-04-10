@@ -12,6 +12,7 @@ const personsTable = (props) => {
         <tr>
           <th>Nome</th>
           <th>E-mail</th>
+          <th>Amigo</th>
           <th>Ações</th>
         </tr>
       </thead>

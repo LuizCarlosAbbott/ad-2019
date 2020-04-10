@@ -31,7 +31,7 @@ function Persons(props) {
   const [nameChange, setName] = useState("");
   const [emailChange, setEmail] = useState("");
 
-  return props.data.persons.map(({ id, name, email }, index) => {
+  return props.data.persons.map(({ id, name, email, friend }, index) => {
     return (
       <tr key={id} id={id}>
         <td>
@@ -56,6 +56,7 @@ function Persons(props) {
             />
           )}
         </td>
+        <td>{friend}</td>
         <td>
           <button
             className="btn btn-warning"
