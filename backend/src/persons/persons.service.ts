@@ -63,22 +63,22 @@ export class PersonsService {
         }
       });
       i < size - 1 ? i++ : clearInterval(myInterval);
-    }, 1000);
+    }, 1500);
   }
 
   async sortAndSend(): Promise<Person[]> {
     const persons = await this.personModel.find().exec();
-    const friends = Array(persons.length);
+    const friends = [];
 
     for (let i = 0; i < persons.length; i++) {
       const excluidos = [];
       const auxPersons = [...persons];
       if (i === 0) {
         excluidos.push(persons[i]);
-        auxPersons.slice(i, 1);
+        auxPersons.splice(i, 1);
 
         let valor = Math.floor(Math.random() * auxPersons.length);
-        friends[i] = auxPersons[valor];
+        friends.push(auxPersons[valor]);
       } else {
         excluidos.push(persons[i]);
         if (friends.includes(persons[i])) {
@@ -90,10 +90,23 @@ export class PersonsService {
           let indexEx = auxPersons.indexOf(e);
           auxPersons.splice(indexEx, 1);
         });
+        friends.map(e => {
+          let indexF2 = auxPersons.indexOf(e);
+          auxPersons.splice(indexF2, 1);
+        });
 
         let valor = Math.floor(Math.random() * auxPersons.length);
-        friends[i] = auxPersons[valor];
+        if (auxPersons[valor] !== undefined) friends.push(auxPersons[valor]);
       }
+    }
+
+    if (friends.length - persons.length !== 0) {
+      let auxPersons = [...persons];
+      friends.map(e => {
+        let indexF2 = auxPersons.indexOf(e);
+        auxPersons.splice(indexF2, 1);
+      });
+      auxPersons.reverse().map(e => friends.push(e));
     }
 
     await persons.map(async ({ _id, name, email }, index) => {
