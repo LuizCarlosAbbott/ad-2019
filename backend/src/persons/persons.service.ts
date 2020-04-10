@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Person } from './interfaces/person.interface';
 import { PersonInput } from './input-persons';
+import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class PersonsService {
@@ -34,6 +35,37 @@ export class PersonsService {
     return await this.personModel.findByIdAndUpdate(id, person, { new: true });
   }
 
+  send(persons: Person[]): void {
+    const transporter = nodemailer.createTransport({
+      service: 'hotmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const size = persons.length;
+    let i = 0;
+
+    const myInterval = setInterval(() => {
+      const mailOptions = {
+        from: process.env.EMAIL,
+        to: persons[i].email,
+        subject: 'Seu Amigo Secreto',
+        text: persons[i].friend + ' é seu amigo secreto',
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      i < size - 1 ? i++ : clearInterval(myInterval);
+    }, 1000);
+  }
+
   async sortAndSend(): Promise<Person[]> {
     const persons = await this.personModel.find().exec();
     const friends = Array(persons.length);
@@ -42,11 +74,11 @@ export class PersonsService {
       const excluidos = [];
       const auxPersons = [...persons];
       if (i === 0) {
-        excluidos.push(persons[i]); // [Luiz]
-        auxPersons.slice(i, 1); // [Joel, Maria]
+        excluidos.push(persons[i]);
+        auxPersons.slice(i, 1);
 
         let valor = Math.floor(Math.random() * auxPersons.length);
-        friends[i] = auxPersons[valor]; // [ Jeol || Maria, empty, empty]
+        friends[i] = auxPersons[valor];
       } else {
         excluidos.push(persons[i]);
         if (friends.includes(persons[i])) {
@@ -58,13 +90,12 @@ export class PersonsService {
           let indexEx = auxPersons.indexOf(e);
           auxPersons.splice(indexEx, 1);
         });
-        // console.log(auxPersons);
 
         let valor = Math.floor(Math.random() * auxPersons.length);
         friends[i] = auxPersons[valor];
       }
     }
-    console.log(persons, friends);
+
     await persons.map(async ({ _id, name, email }, index) => {
       await this.personModel.findByIdAndUpdate(
         _id,
@@ -73,6 +104,10 @@ export class PersonsService {
       );
     });
 
-    return await this.personModel.find().exec();
+    const personSend = await this.personModel.find().exec();
+
+    this.send(personSend);
+
+    return personSend;
   }
 }
