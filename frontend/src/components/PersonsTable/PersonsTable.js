@@ -10,7 +10,6 @@ const personsTable = (props) => {
     <table className="PersonTable">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nome</th>
           <th>E-mail</th>
           <th>Ações</th>

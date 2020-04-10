@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaTrash, FaPencilAlt, FaSave } from "react-icons/fa";
 import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import "./Persons.css";
 
 const DELETE_PERSON = gql`
   mutation deletePerson($id: String!) {
@@ -33,12 +34,12 @@ function Persons(props) {
   return props.data.persons.map(({ id, name, email }, index) => {
     return (
       <tr key={id} id={id}>
-        <td>{id}</td>
         <td>
           {rIndex !== index ? (
             name
           ) : (
             <input
+              className="Fade"
               value={nameChange}
               onChange={(e) => setName(e.target.value)}
             />
@@ -49,6 +50,7 @@ function Persons(props) {
             email
           ) : (
             <input
+              className="Fade"
               value={emailChange}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -71,7 +73,7 @@ function Persons(props) {
           </button>
           {rIndex === index ? (
             <button
-              className="btn btn-success ml-2"
+              className="btn btn-success ml-2 Fade"
               onClick={() => {
                 updatePerson({
                   variables: {

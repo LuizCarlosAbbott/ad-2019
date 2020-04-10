@@ -1,0 +1,15 @@
+.Fade {
+  animation: fadeIn 0s 0.2s forwards;
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  99% {
+    visibility: hidden;
+    width: 0;
+  }
+  100% {
+    width: auto;
+    visibility: visible;
+  }
+}
