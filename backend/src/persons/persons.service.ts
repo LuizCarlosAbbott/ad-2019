@@ -37,7 +37,7 @@ export class PersonsService {
 
   send(persons: Person[]): void {
     const transporter = nodemailer.createTransport({
-      service: 'hotmail',
+      service: process.env.EMAIL_DOMAIN,
       auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASS,
