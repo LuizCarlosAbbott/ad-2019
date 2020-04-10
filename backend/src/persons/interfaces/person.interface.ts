@@ -4,4 +4,5 @@ export interface Person extends Document {
   id: string;
   name: string;
   email: string;
+  friend: string;
 }

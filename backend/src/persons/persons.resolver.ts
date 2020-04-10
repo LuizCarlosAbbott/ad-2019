@@ -8,22 +8,24 @@ export class PersonsResolver {
   constructor(private readonly personsService: PersonsService) {}
 
   @Query(() => [CreatePersonDto])
-  async persons() {
+  async persons(): Promise<CreatePersonDto[]> {
     return this.personsService.findAll();
   }
 
   @Query(() => CreatePersonDto, { nullable: true })
-  async person(@Args('id') id: string) {
+  async person(@Args('id') id: string): Promise<CreatePersonDto> {
     return await this.personsService.findOne(id);
   }
 
   @Mutation(() => CreatePersonDto)
-  async createPerson(@Args('input') input: PersonInput) {
+  async createPerson(
+    @Args('input') input: PersonInput,
+  ): Promise<CreatePersonDto> {
     return this.personsService.create(input);
   }
 
   @Mutation(() => CreatePersonDto)
-  async deletePerson(@Args('id') id: string) {
+  async deletePerson(@Args('id') id: string): Promise<CreatePersonDto> {
     const person = await this.personsService.findOne(id);
 
     await this.personsService.deletePerson(id);
@@ -34,12 +36,17 @@ export class PersonsResolver {
   async updatePerson(
     @Args('id') id: string,
     @Args('input') input: PersonInput,
-  ) {
-    return this.personsService.update(id, input);
+  ): Promise<CreatePersonDto> {
+    return await this.personsService.update(id, input);
   }
 
   @Mutation(() => Boolean)
-  async deletePersons() {
+  async deletePersons(): Promise<Boolean> {
     return await this.personsService.deletePersons();
+  }
+
+  @Mutation(() => [CreatePersonDto])
+  async sortFriend(): Promise<CreatePersonDto[]> {
+    return await this.personsService.sortAndSend();
   }
 }

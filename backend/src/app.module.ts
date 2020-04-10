@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PersonsModule } from './persons/persons.module';
+require('dotenv').config();
 
 @Module({
   imports: [

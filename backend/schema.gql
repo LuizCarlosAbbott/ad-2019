@@ -6,6 +6,7 @@ type CreatePersonDto {
   id: ID!
   name: String!
   email: String!
+  friend: String
 }
 
 type Mutation {
@@ -13,6 +14,7 @@ type Mutation {
   deletePerson(id: String!): CreatePersonDto!
   updatePerson(input: PersonInput!, id: String!): CreatePersonDto!
   deletePersons: Boolean!
+  sortFriend: [CreatePersonDto!]!
 }
 
 input PersonInput {

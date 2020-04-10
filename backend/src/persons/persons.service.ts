@@ -33,4 +33,11 @@ export class PersonsService {
   async update(id: string, person: PersonInput): Promise<Person> {
     return await this.personModel.findByIdAndUpdate(id, person, { new: true });
   }
+
+  async sortAndSend(): Promise<Person[]> {
+    const persons = await this.personModel.find().exec();
+    console.log(persons);
+
+    return persons;
+  }
 }
