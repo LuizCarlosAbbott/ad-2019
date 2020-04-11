@@ -1,8 +1,8 @@
 - [x] Criar backend utilizando mongoose(mongoDB) e algum framework (NestJs/GraphQL).
 - [x] Fazer CRUD de pessoas (nome, email, amigo).
-- [ ] Preencher coluna amigo(FK) -- **amigo** => adicionado apos o sorteio / inicialmente vazio/inexistente
+- [x] Preencher coluna amigo(FK) -- **amigo** => adicionado apos o sorteio / inicialmente vazio/inexistente
 - [x] Fazer o CRUD no frontend em ReactJs (listar, cadastrar, editar, apagar pessoas).
-- [ ] Sortear os amigos (preencher a coluna amigos) e enviar e-mail para cada pessoa com o amigo sorteado.
+- [x] Sortear os amigos (preencher a coluna amigos) e enviar e-mail para cada pessoa com o amigo sorteado.
 - [ ] Implementar testes no backend.
 - [ ] Dar deploy da aplicação no Heroku.
 - [ ] Escrever instruçes de como executar o programa.

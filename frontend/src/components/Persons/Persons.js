@@ -59,7 +59,7 @@ function Persons(props) {
         <td>{friend}</td>
         <td>
           <button
-            className="btn btn-warning"
+            className="btn btn-warning Fade"
             onClick={() => {
               if (rIndex === index) {
                 setIndex(-1);
@@ -70,7 +70,7 @@ function Persons(props) {
               }
             }}
           >
-            <FaPencilAlt />
+            <FaPencilAlt style={{ backgroundColor: "#fbc118" }} />
           </button>
           {rIndex === index ? (
             <button
@@ -85,18 +85,18 @@ function Persons(props) {
                 setIndex(-1);
               }}
             >
-              <FaSave />
+              <FaSave style={{ backgroundColor: "#57a845" }} />
             </button>
           ) : null}
           <button
-            className="btn btn-danger ml-2"
+            className="btn btn-danger ml-2 Fade"
             onClick={() => {
               deletePerson({ variables: { id } });
               const row = document.getElementById(id);
               row.parentNode.removeChild(row);
             }}
           >
-            <FaTrash />
+            <FaTrash style={{ backgroundColor: "#dd4b44" }} />
           </button>
         </td>
       </tr>
