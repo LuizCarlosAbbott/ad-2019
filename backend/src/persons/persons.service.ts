@@ -63,7 +63,7 @@ export class PersonsService {
         }
       });
       i < size - 1 ? i++ : clearInterval(myInterval);
-    }, 1500);
+    }, 3000);
   }
 
   async sortAndSend(): Promise<Person[]> {
