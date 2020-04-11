@@ -25,9 +25,9 @@
 
 Para poder habilitar o serviço de email no banck crie um arquivo chamado **.env** e dentro dele escreva suas informações como no exemplo abaixo:
 
-EMAIL_DOMAIN: 'hotmail'
-EMAIL: 'exemplo@hotmail.com'
-EMAIL_PASS: 'palavrachave'
+EMAIL_DOMAIN: 'hotmail' <br/>
+EMAIL: 'exemplo@hotmail.com' <br/>
+EMAIL_PASS: 'palavrachave' <br/>
 
 ## Rodar aplicação Backend/Frontend
 
