@@ -17,6 +17,14 @@
 
 - entrar na pasta raiz backend/fronted executar **yarn** ou **npm install** para instalar dependências.
 
+## Habilitando serviço de email
+
+Para poder habilitar o serviço de email no banck crie um arquivo chamado **.env** e dentro dele escreva suas informações como no exemplo abaixo:
+
+EMAIL_DOMAIN: 'hotmail'
+EMAIL: 'exemplo@hotmail.com'
+EMAIL_PASS: 'palavrachave'
+
 ## Rodar aplicação Backend/Frontend
 
 - executar o comando **yarn start** ou **npm start** na pasta raiz após a instalação das dependências.
