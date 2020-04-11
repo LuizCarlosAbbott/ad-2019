@@ -4,12 +4,21 @@
 - [x] Fazer o CRUD no frontend em ReactJs (listar, cadastrar, editar, apagar pessoas).
 - [x] Sortear os amigos (preencher a coluna amigos) e enviar e-mail para cada pessoa com o amigo sorteado.
 - [ ] Implementar testes no backend.
-- [ ] Dar deploy da aplicação no Heroku.
-- [ ] Escrever instruçes de como executar o programa.
+- [x] Dar deploy da aplicação no Heroku.
+- [x] Escrever instruçes de como executar o programa.
 
-## Backend
+# Instruções
 
-Iniciar o mongodb
+## Iniciar o MongoDB (Linux)
 
-sudo systemctl start mongod
-entrar na pasta raiz backend e executar o comando **yarn start** ou **npm start**
+- sudo systemctl start mongod
+
+## Instalar dependências
+
+- entrar na pasta raiz backend/fronted executar **yarn** ou **npm install** para instalar dependências.
+
+## Rodar aplicação Backend/Frontend
+
+- executar o comando **yarn start** ou **npm start** na pasta raiz após a instalação das dependências.
+
+O frontend estará rodando em http://localhost:3000 e o backend está rodando em http://localhost:4000/graphql.
