@@ -13,3 +13,9 @@
     visibility: visible;
   }
 }
+
+@media (max-width: 860px) {
+  .Fade {
+    margin: 0 !important;
+  }
+}

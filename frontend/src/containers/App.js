@@ -65,7 +65,7 @@ function App() {
   return (
     <div className="Geral">
       <div className="Logo">
-        <FaGifts size={150} />
+        <FaGifts size={150} className="icon" />
         <div className="form">
           <div className="row">
             <div className="col12 col-md-6">
