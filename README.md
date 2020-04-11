@@ -7,6 +7,10 @@
 - [x] Dar deploy da aplicação no Heroku.
 - [x] Escrever instruçes de como executar o programa.
 
+# Pre-requisitos
+
+- [Nodejs](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/) e [Nestjs](https://nestjs.com/) instalados na maquina.
+
 # Instruções
 
 ## Iniciar o MongoDB (Linux)
