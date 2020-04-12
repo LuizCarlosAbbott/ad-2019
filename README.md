@@ -23,7 +23,7 @@
 
 ## Habilitando serviço de email
 
-Para poder habilitar o serviço de email no banck crie um arquivo chamado **.env** e dentro dele escreva suas informações como no exemplo abaixo:
+Para poder habilitar o serviço de email no backend crie um arquivo chamado **.env** na pasta raiz e dentro dele escreva suas informações como no exemplo abaixo:
 
 EMAIL_DOMAIN: 'hotmail' <br/>
 EMAIL: 'exemplo@hotmail.com' <br/>

@@ -68,45 +68,57 @@ export class PersonsService {
 
   async sortAndSend(): Promise<Person[]> {
     const persons = await this.personModel.find().exec();
-    const friends = [];
+    let friends = [];
 
-    for (let i = 0; i < persons.length; i++) {
-      const excluidos = [];
-      const auxPersons = [...persons];
-      if (i === 0) {
-        excluidos.push(persons[i]);
-        auxPersons.splice(i, 1);
+    for (let j = 0; j < 10; j++) {
+      friends = [];
+      for (let i = 0; i < persons.length; i++) {
+        const excluidos = [];
+        const auxPersons = [...persons];
+        if (i === 0) {
+          excluidos.push(persons[i]);
+          auxPersons.splice(i, 1);
 
-        let valor = Math.floor(Math.random() * auxPersons.length);
-        friends.push(auxPersons[valor]);
-      } else {
-        excluidos.push(persons[i]);
-        if (friends.includes(persons[i])) {
-          let indexF;
-          indexF = friends.indexOf(persons[i]);
-          excluidos.push(persons[indexF]);
+          let valor = Math.floor(Math.random() * auxPersons.length);
+          friends.push(auxPersons[valor]);
+        } else {
+          excluidos.push(persons[i]);
+          if (friends.includes(persons[i])) {
+            let indexF;
+            indexF = friends.indexOf(persons[i]);
+            excluidos.push(persons[indexF]);
+          }
+          excluidos.map(e => {
+            let indexEx = auxPersons.indexOf(e);
+            auxPersons.splice(indexEx, 1);
+          });
+          friends.map(e => {
+            let indexF2 = auxPersons.indexOf(e);
+            auxPersons.splice(indexF2, 1);
+          });
+
+          let valor = Math.floor(Math.random() * auxPersons.length);
+          if (auxPersons[valor] !== undefined) friends.push(auxPersons[valor]);
         }
-        excluidos.map(e => {
-          let indexEx = auxPersons.indexOf(e);
-          auxPersons.splice(indexEx, 1);
-        });
+      }
+
+      if (friends.length - persons.length !== 0) {
+        let auxPersons = [...persons];
         friends.map(e => {
           let indexF2 = auxPersons.indexOf(e);
           auxPersons.splice(indexF2, 1);
         });
-
-        let valor = Math.floor(Math.random() * auxPersons.length);
-        if (auxPersons[valor] !== undefined) friends.push(auxPersons[valor]);
+        auxPersons.reverse().map(e => friends.push(e));
       }
-    }
 
-    if (friends.length - persons.length !== 0) {
-      let auxPersons = [...persons];
-      friends.map(e => {
-        let indexF2 = auxPersons.indexOf(e);
-        auxPersons.splice(indexF2, 1);
-      });
-      auxPersons.reverse().map(e => friends.push(e));
+      let tamanhoPersons = persons.length;
+
+      if (
+        friends.length === tamanhoPersons &&
+        friends[tamanhoPersons - 1].id !== persons[tamanhoPersons - 1].id
+      ) {
+        j = 10;
+      }
     }
 
     await persons.map(async ({ _id, name, email }, index) => {

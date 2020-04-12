@@ -62,10 +62,9 @@ function App() {
   });
   const [sortFriend, { loading: loadingSort }] = useMutation(SORT_FRIEND, {
     update(cache, { data: { sortFriend } }) {
-      const { persons } = cache.readQuery({ query: PERSONS });
       cache.writeQuery({
         query: PERSONS,
-        data: { persons: persons.concat([sortFriend]).pop() },
+        data: { persons: sortFriend.data.persons },
       });
     },
   });
@@ -143,7 +142,12 @@ function App() {
               </button>
               <button
                 className="btn btn-success ml-2"
-                onClick={() => sortFriend()}
+                onClick={() => {
+                  data &&
+                    data.persons &&
+                    data.persons.length > 1 &&
+                    sortFriend();
+                }}
               >
                 Sortear e enviar email
               </button>
