@@ -61,10 +61,10 @@ function App() {
     },
   });
   const [sortFriend, { loading: loadingSort }] = useMutation(SORT_FRIEND, {
-    update(cache, { data: { sortFriend } }) {
-      cache.writeQuery({
+    async update(cache, { data: { sortFriend } }) {
+      await cache.writeQuery({
         query: PERSONS,
-        data: { persons: sortFriend.data.persons },
+        data: { persons: sortFriend },
       });
     },
   });
