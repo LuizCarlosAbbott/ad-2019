@@ -5,6 +5,7 @@ import "./PersonTable.css";
 const personsTable = (props) => {
   if (props.loading || props.loadingSort) return <p>Loading...</p>;
   if (props.error) return <p>Error :(</p>;
+  if (props.data && props.data.persons.length === 0) return <p> </p>;
 
   return (
     <table className="PersonTable">
