@@ -4,16 +4,6 @@ import { useMutation } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import "./Persons.css";
 
-const DELETE_PERSON = gql`
-  mutation deletePerson($id: String!) {
-    deletePerson(id: $id) {
-      id
-      name
-      email
-    }
-  }
-`;
-
 const UPDATE_PERSON = gql`
   mutation updatePerson($id: String!, $input: PersonInput!) {
     updatePerson(id: $id, input: $input) {
@@ -25,7 +15,6 @@ const UPDATE_PERSON = gql`
 `;
 
 function Persons(props) {
-  const [deletePerson] = useMutation(DELETE_PERSON);
   const [updatePerson] = useMutation(UPDATE_PERSON);
   const [rIndex, setIndex] = useState(-1);
   const [nameChange, setName] = useState("");
@@ -90,11 +79,7 @@ function Persons(props) {
           ) : null}
           <button
             className="btn btn-danger ml-2 Fade"
-            onClick={() => {
-              deletePerson({ variables: { id } });
-              const row = document.getElementById(id);
-              row.parentNode.removeChild(row);
-            }}
+            onClick={() => props.delete({ variables: { id } })}
           >
             <FaTrash style={{ backgroundColor: "#dd4b44" }} />
           </button>

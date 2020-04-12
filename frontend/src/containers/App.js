@@ -6,6 +6,16 @@ import { gql } from "apollo-boost";
 import { FaGifts, FaArrowRight } from "react-icons/fa";
 import "./App.css";
 
+const DELETE_PERSON = gql`
+  mutation deletePerson($id: String!) {
+    deletePerson(id: $id) {
+      id
+      name
+      email
+    }
+  }
+`;
+
 const PERSONS = gql`
   {
     persons {
@@ -50,7 +60,7 @@ function App() {
       });
     },
   });
-  const [sortFriend] = useMutation(SORT_FRIEND, {
+  const [sortFriend, { loading: loadingSort }] = useMutation(SORT_FRIEND, {
     update(cache, { data: { sortFriend } }) {
       const { persons } = cache.readQuery({ query: PERSONS });
       cache.writeQuery({
@@ -59,6 +69,19 @@ function App() {
       });
     },
   });
+  const [deletePerson] = useMutation(DELETE_PERSON, {
+    async update(cache, { data: { deletePerson } }) {
+      const { persons } = cache.readQuery({ query: PERSONS });
+      await persons.map((e, index) =>
+        e.id === deletePerson.id ? persons.splice(index, 1) : e
+      );
+      cache.writeQuery({
+        query: PERSONS,
+        data: { persons: persons },
+      });
+    },
+  });
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -129,7 +152,13 @@ function App() {
         </div>
       </div>
       <div className="App">
-        <PersonsTable data={data} loading={loading} error={error} />
+        <PersonsTable
+          data={data}
+          loading={loading}
+          loadingSort={loadingSort}
+          error={error}
+          delete={deletePerson}
+        />
       </div>
       <div className="Footer">
         Produzido com carinho por Luiz Carlos - para ver o código &nbsp; {"  "}

@@ -3,7 +3,7 @@ import Persons from "../Persons/Persons";
 import "./PersonTable.css";
 
 const personsTable = (props) => {
-  if (props.loading) return <p>Loading...</p>;
+  if (props.loading || props.loadingSort) return <p>Loading...</p>;
   if (props.error) return <p>Error :(</p>;
 
   return (
@@ -16,7 +16,7 @@ const personsTable = (props) => {
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>{<Persons data={props.data} />}</tbody>
+      <tbody>{<Persons data={props.data} delete={props.delete} />}</tbody>
     </table>
   );
 };
